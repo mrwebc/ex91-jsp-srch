@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<!-- 이 파일의 형식은 여기에 https://mybatis.org/mybatis-3/ko/getting-started.html -->
+
+<configuration>
+
+  <!-- 로그4제이 세팅 -->
+  <settings>
+    <setting name="logImpl" value="LOG4J2"/>
+  </settings>
+
+  <typeAliases>
+    <typeAlias type="com.study.jsp.model.MemberVO" alias="mVo"/>    
+    <typeAlias type="com.study.jsp.model.BoardVO" alias="bVo"/> 
+    <typeAlias type="com.study.jsp.model.Criteria" alias="cri"/> 
+    <typeAlias type="com.study.jsp.model.SrchCriteria" alias="s_cri"/> 
+  </typeAliases>
+  
+  <!-- DB 연결정보 설정 -> 마이바티즈 자동 연결 (나중에 이 부분은 스프링 설정 xml 파일로 이동하게 된다.)-->
+  <environments default="dev">
+    <environment id="dev">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>        
+        <property name="url" value="jdbc:mysql://localhost:3306/jsp_board?serverTimezone=Asia/Seoul"/>
+        <property name="username" value="mvcweb"/>        
+        <property name="password" value="1234"/>        
+      </dataSource>
+    </environment>
+  </environments>
+  
+  <!-- SQL을 정의한 xml 설정 파일 (나중에 이 부분은 스프링 설정 xml 파일로 이동하게 된다.) -->
+  <mappers>
+    <mapper resource="myBatis/mapper/TimeMapper.xml"/>
+    <mapper resource="myBatis/mapper/MemberMapper.xml"/>
+    <mapper resource="myBatis/mapper/BoardMapper.xml"/>
+  </mappers>
+</configuration>
+
